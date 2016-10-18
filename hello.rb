@@ -84,6 +84,32 @@ get '/' do
   erb :index
 end
 
+get '/webhooks/all' do
+  @webhooks = Bigcommerce::Webhook.all
+  erb :webhook_list
+end
+
+get '/webhooks/create' do
+  @user = current_user
+  @store = current_store
+  return render_error('[home] Unauthorized!') unless @user && @store
+
+  @bc_api_url = bc_api_url
+  @client_id = bc_client_id
+  @orders = JSON.pretty_generate(@store.bc_api.orders)
+
+  @webhook = Bigcommerce::Webhook.create(
+    scope: 'store/customers/*',
+    destination: 'https://app.example.com/customer-hook'
+  )
+
+  redirect to('/webhooks/all')
+end
+
+get '/customer-hook' do
+
+end
+
 get '/customers' do
   @user = current_user
   @store = current_store
