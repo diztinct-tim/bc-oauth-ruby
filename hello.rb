@@ -114,7 +114,9 @@ post '/webhooks/create' do
 end
 
 get '/customers-callback' do
-  @webhooks = Bigcommerce::Webhook.all
+  # @webhooks = Bigcommerce::Webhook.all
+  @webhooks = JSON.pretty_generate(@store.bc_api.hooks.all)
+
 
   erb :webhook_list
 end
