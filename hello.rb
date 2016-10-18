@@ -84,21 +84,37 @@ get '/' do
   erb :index
 end
 
-get '/webhooks/create' do
-  @store = current_store
-  new_hook = {
-    scope: "store/customers/*",
-    destination: "https://bc-oauth-ruby.herokuapp.com/customers-callback",
-    is_active: true
-  }
-  hook = @store.bc_api.create_hook(new_hook)
+# post '/webhooks/create' do
+#   @store = current_store
+#   new_hook = {
+#     scope: "store/customers/*",
+#     destination: "https://bc-oauth-ruby.herokuapp.com/customers-callback",
+#     is_active: true
+#   }
+#   hook = @store.bc_api.create_hook(new_hook)
+
+#   redirect to('/customers-callback')
+# end
+
+# get '/customers-callback' do
+#   @store = current_store
+#   @webhooks = @store.bc_api.hooks
+
+#   erb :webhook_list
+# end
+
+post '/webhooks/create' do
+  # Create a webhook
+  @webhook = Bigcommerce::Webhook.create(
+    scope: 'store/order/*',
+    destination: 'https://bc-oauth-ruby.herokuapp.com/customers-callback'
+  )
 
   redirect to('/customers-callback')
 end
 
 get '/customers-callback' do
-  @store = current_store
-  @webhooks = @store.bc_api.hooks
+  @webhooks = Bigcommerce::Webhook.all
 
   erb :webhook_list
 end
