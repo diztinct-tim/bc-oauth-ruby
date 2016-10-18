@@ -31,5 +31,16 @@
 	<h2>Customers</h2>
 	<pre><%= @customers %></pre>
 
+	<% if @customers.count > 0 %>
+	    <% @customers.each do |customer| %>
+	      <li>
+	        <p class="name"><b>Email:</b> <%= customer[:email] %></p>
+	      </li>
+	      <hr>
+	    <% end %>
+	  <% else %>
+	    <li>No Products.</li>
+	<% end %>
+
   </body>
 </html>
