@@ -85,7 +85,7 @@ get '/' do
 end
 
 get '/customers' do
-  @title = "All Customers"
+  @store = current_store
   @customers = JSON.pretty_generate(@store.bc_api.customers)
 
   erb :customers
