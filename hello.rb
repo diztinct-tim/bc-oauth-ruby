@@ -122,7 +122,7 @@ get '/customers-callback' do
   @client_id = bc_client_id
 
   # @webhooks = Bigcommerce::Webhook.all
-  @webhooks = JSON.pretty_generate(@store.bc_api.webhook.all)
+  @webhooks = JSON.pretty_generate(@store.bc_api.Webhook.all)
 
 
   erb :webhook_list
