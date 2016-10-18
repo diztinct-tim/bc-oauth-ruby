@@ -19,6 +19,10 @@
     <pre>curl -X GET -v -H 'Accept: application/json' -H 'X-Auth-Client: <%= @client_id %>' -H 'X-Auth-Token: <%= @store.access_token %>' <%= "#{@bc_api_url}/stores/#{@store.store_hash}/v2/products" %></pre>
 
     <hr/>
+    <h2>Hooks</h2>
+    <pre><%= @hooks %></pre>
+
+    <hr/>
     <h2>Products</h2>
     <pre><%= @products %></pre>
   </body>
