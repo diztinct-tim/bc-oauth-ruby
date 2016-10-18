@@ -85,18 +85,20 @@ get '/' do
 end
 
 get '/webhooks/create' do
+  @store = current_store
   new_hook = {
     scope: "store/customers/*",
     destination: "https://bc-oauth-ruby.herokuapp.com/customers-callback",
     is_active: true
   }
-  hook = bc_api.create_hook(new_hook)
+  hook = @store.bc_api.create_hook(new_hook)
 
   redirect to('/customers-callback')
 end
 
 get '/customers-callback' do
-  @webhooks = bc_api.hooks
+  @store = current_store
+  @webhooks = @store.bc_api.hooks
 
   erb :webhook_list
 end
