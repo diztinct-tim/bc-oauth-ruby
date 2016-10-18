@@ -84,6 +84,13 @@ get '/' do
   erb :index
 end
 
+get '/customers' do
+  @title = "All Customers"
+  @customers = JSON.pretty_generate(@store.bc_api.customers)
+
+  erb :customers
+end
+
 get '/instructions' do
   erb :instructions
 end
@@ -216,6 +223,7 @@ get '/remove-user' do
   # Return 204
   return 204
 end
+
 
 # Gets the current user from session
 def current_user

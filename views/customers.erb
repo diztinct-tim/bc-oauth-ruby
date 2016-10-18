@@ -1,0 +1,25 @@
+<html>
+<body>
+	<h1><%= @title %></h1>
+
+	<p>Customer count: <%= @customers.count %></p>
+
+  <hr>
+
+	<% if @customers.count > 0 %>
+	    <% @customers.each do |customer| %>
+	      <li>
+	      	<p class="name"><b>Customer ID:</b> <%= customer[:id] %></p>
+	        <p class="name"><b>Name:</b> <%= customer[:first_name] %> <%= customer[:last_name] %></p>
+	        <p class="name"><b>Email:</b> <%= customer[:email] %></p>
+	        <p class="name"><b>Phone:</b> <%= customer[:phone] %></p>
+	        <p class="name"><b>Company:</b> <%= customer[:company] %></p>
+	        
+	        <hr>
+	      </li>
+	    <% end %>
+	  <% else %>
+	    <li>No Products.</li>
+	<% end %>
+</body>
+</html>
