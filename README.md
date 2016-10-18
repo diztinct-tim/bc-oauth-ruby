@@ -1,3 +1,5 @@
+<a href="https://bc-oauth-ruby.herokuapp.com/" target="_blank">https://bc-oauth-ruby.herokuapp.com/</a>
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) [(Heroku instructions)](#getting-started-heroku-version)
 # Bigcommerce Sample App: Ruby
 This is a small Sinatra application that implements the OAuth callback flow for BigCommerce [Single Click Apps][single_click_apps]
