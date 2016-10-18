@@ -114,6 +114,13 @@ post '/webhooks/create' do
 end
 
 get '/customers-callback' do
+  @user = current_user
+  @store = current_store
+  return render_error('[home] Unauthorized!') unless @user && @store
+
+  @bc_api_url = bc_api_url
+  @client_id = bc_client_id
+
   # @webhooks = Bigcommerce::Webhook.all
   @webhooks = JSON.pretty_generate(@store.bc_api.hooks.all)
 
