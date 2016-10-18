@@ -309,5 +309,5 @@ end
 # The scopes we are requesting (must match what is requested in
 # Developer Portal).
 def scopes
-  ENV.fetch('SCOPES', 'store_v2_products')
+  ENV.fetch('SCOPES', 'store_v2_products store_v2_customers store_v2_orders')
 end
