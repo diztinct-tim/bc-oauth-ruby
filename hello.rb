@@ -80,6 +80,7 @@ get '/' do
   @bc_api_url = bc_api_url
   @client_id = bc_client_id
   @products = JSON.pretty_generate(@store.bc_api.products)
+  @hooks = JSON.pretty_generate(@store.bc_api)
 
   erb :index
 end
@@ -299,7 +300,6 @@ end
 def scopes
   ENV.fetch('SCOPES', 'store_v2_products store_v2_customers store_v2_orders')
 end
-
 
 # post '/webhooks/create' do
 #   @store = current_store
