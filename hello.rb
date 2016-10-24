@@ -80,7 +80,7 @@ get '/' do
   @bc_api_url = bc_api_url
   @client_id = bc_client_id
   @products = JSON.pretty_generate(@store.bc_api.products)
-  @hooks = JSON.pretty_generate(@store.bc_api)
+  @hooks = @store.bc_api.to_json
 
   erb :index
 end
