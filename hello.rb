@@ -80,7 +80,7 @@ get '/' do
   @bc_api_url = bc_api_url
   @client_id = bc_client_id
   @products = JSON.pretty_generate(@store.bc_api.products)
-  @hooks = JSON.pretty_generate(@store.bc_api.webhooks.all)
+  @hooks = JSON.pretty_generate(@store.bc_api.hooks)
 
   erb :index
 end
@@ -301,25 +301,12 @@ def scopes
   ENV.fetch('SCOPES', 'store_v2_products store_v2_customers store_v2_orders')
 end
 
-# post '/webhooks/create' do
-#   @store = current_store
-#   new_hook = {
-#     scope: "store/customers/*",
-#     destination: "https://bc-oauth-ruby.herokuapp.com/customers-callback",
-#     is_active: true
-#   }
-#   hook = @store.bc_api.create_hook(new_hook)
-
-#   redirect to('/customers-callback')
-# end
-
 get '/customers-callback' do
   @store = current_store
 
   @bc_api_url = bc_api_url
   @client_id = bc_client_id
 
-  # @webhooks = JSON.pretty_generate(@store.bc_api.hooks)
   puts @bc_api_url
   puts @client_id
 
