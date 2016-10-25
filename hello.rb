@@ -81,7 +81,8 @@ get '/' do
   @client_id = bc_client_id
   @products = JSON.pretty_generate(@store.bc_api.products)
   # @hooks = JSON.pretty_generate(@store.bc_api.hooks)
-  @hooks = JSON.pretty_generate(@store.bc_api.Webhook)
+  # @hooks = JSON.pretty_generate(@store.bc_api.Webhook)
+  @hooks = JSON.pretty_generate(@store.bc_api.Webhooks)
 
   erb :index
 end
