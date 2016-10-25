@@ -84,7 +84,7 @@ get '/' do
   # @hooks = JSON.pretty_generate(@store.bc_api.Webhook)
   # @hooks = JSON.pretty_generate(@store.bc_api.Webhooks)
   # @hooks = JSON.pretty_generate(@store.bc_api.webhooks)
-  @hooks = JSON.pretty_generate("#{@bc_api_url}/stores/#{@store.store_hash}/v2/hooks")
+  # @hooks = JSON.pretty_generate("#{@bc_api_url}/stores/#{@store.store_hash}/v2/hooks")
 
   erb :index
 end
