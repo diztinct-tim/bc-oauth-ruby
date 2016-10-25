@@ -85,7 +85,7 @@ get '/' do
   # @hooks = JSON.pretty_generate(@store.bc_api.Webhooks)
   # @hooks = JSON.pretty_generate(@store.bc_api.webhooks)
   # @hooks = JSON.pretty_generate("#{@bc_api_url}/stores/#{@store.store_hash}/v2/hooks")
-  # @hooks = JSON.pretty_generate('https://api.bigcommerce.com/stores/3qqwd/v2/hooks').to_json
+  # @hooks = ('https://api.bigcommerce.com/stores/3qqwd/v2/hooks').to_json
 
   erb :index
 end
@@ -342,7 +342,17 @@ get '/orders' do
   erb :orders
 end
 
-
+post '/orders' do
+  status 204 #successful request with no body content
+  
+  request.body.rewind
+  request_payload = JSON.parse(request.body.read)
+  
+  #append the payload to a file
+  File.open("events.txt", "a") do |f|
+    f.puts(request_payload)
+  end
+end
 
 
 
