@@ -6,6 +6,7 @@ require 'base64'
 require 'openssl'
 require 'bigcommerce'
 require 'logger'
+require 'open-uri'
 
 configure do
   set :run, true
@@ -343,15 +344,12 @@ get '/orders' do
 end
 
 post '/orders' do
-  status 204 #successful request with no body content
+  status 200 #successful request with no body content
   
-  request.body.rewind
-  request_payload = JSON.parse(request.body.read)
-  
-  #append the payload to a file
-  File.open("events.txt", "a") do |f|
-    f.puts(request_payload)
-  end
+
+  result = open('http://requestb.in/1gb1dah1')
+  result.lines { |f| f.each_line {|line| p line} }
+
 end
 
 
