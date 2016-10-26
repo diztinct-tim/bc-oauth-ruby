@@ -352,7 +352,9 @@ post '/orders' do
 
 end
 
-
+post '/customers-callback' do
+  status 200
+end
 
 
 
