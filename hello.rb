@@ -344,12 +344,7 @@ get '/orders' do
 end
 
 post '/orders' do
-  status 200 #successful request with no body content
-  
-
-  result = open('http://requestb.in/1gb1dah1')
-  result.lines { |f| f.each_line {|line| p line} }
-
+  status 200
 end
 
 post '/customers-callback' do
